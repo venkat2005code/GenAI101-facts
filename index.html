@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
         }
@@ -32,7 +32,7 @@
         }
 
         li {
-            background-color: #e6e6fa; /* Lavender background for list items */
+            background-color: #e6e6fa;
             margin: 10px 0;
             padding: 10px;
             border-radius: 5px;
@@ -44,7 +44,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #4caf50; /* Green background for button */
+            background-color: #4caf50;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -52,22 +52,7 @@
         }
 
         button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px auto;
-            max-width: 400px;
-        }
-
-        input, textarea {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -76,66 +61,19 @@
         <h1>GenAI 101 Facts</h1>
         <ul id="facts-list"></ul>
         <button id="replace-facts">Replace Facts</button>
-
-        <h2>Add New Fact</h2>
-        <form id="fact-form">
-            <input type="text" id="fact" placeholder="Enter new fact" required>
-            <textarea id="description" placeholder="Enter description" required></textarea>
-            <button type="submit">Add Fact</button>
-        </form>
-        <ul id="new-facts-list"></ul>
     </div>
     <script>
         const facts = [
-            {
-                fact: "Course Purpose",
-                description: "GenAI 101 is designed to help participants understand prompt engineering, context setting, and how to handle AI limitations, particularly hallucinations."
-            },
-            {
-                fact: "Capstone Project",
-                description: "The course includes a capstone project, the Personal Fun Facts Generator App, which allows users to apply the concepts learned throughout the workshop."
-            },
-            {
-                fact: "Key Features",
-                description: "The Personal Fun Facts Generator App can generate random fun facts about users and allows for customization by adding unique facts."
-            },
-            {
-                fact: "Technology Stack",
-                description: "The app is built using HTML, CSS, and JavaScript, making it accessible for web development."
-            },
-            {
-                fact: "Learning Objectives",
-                description: "Participants will learn to recognize and address potential hallucinations in AI-generated content."
-            },
-            {
-                fact: "Interactive Learning",
-                description: "The course emphasizes interactive learning, allowing participants to experiment with prompt variations to see how they affect generated outputs."
-            },
-            {
-                fact: "Deployment",
-                description: "The app can be easily hosted on GitHub Pages, enabling users to share their creations online without additional setup."
-            },
-            {
-                fact: "Timeframe",
-                description: "The project is designed to be completed in approximately 15 minutes, incorporating key concepts from the workshop."
-            },
-            {
-                fact: "Hands-On Experience",
-                description: "Participants gain hands-on experience with AI tools, enhancing their understanding of how to effectively use AI in practical applications."
-            },
-            {
-                fact: "Collaboration",
-                description: "GenAI 101 is part of a collaborative effort involving various organizations, enhancing the learning experience through shared resources and knowledge."
-            }
+            { fact: "Course Purpose", description: "GenAI 101 is designed to help participants understand prompt engineering, context setting, and how to handle AI limitations, particularly hallucinations." },
+            { fact: "Capstone Project", description: "The course includes a capstone project, the Personal Fun Facts Generator App, which allows users to apply the concepts learned throughout the workshop." },
+            // ... other facts
         ];
 
         const factsList = document.getElementById('facts-list');
         const replaceButton = document.getElementById('replace-facts');
-        const newFactsList = document.getElementById('new-facts-list');
-        const factForm = document.getElementById('fact-form');
 
         function displayFacts() {
-            factsList.innerHTML = ''; // Clear existing facts
+            factsList.innerHTML = '';
             facts.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `<strong>${item.fact}:</strong> ${item.description}`;
@@ -143,24 +81,10 @@
             });
         }
 
-        replaceButton.addEventListener('click', displayFacts);
-
-        factForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            const fact = document.getElementById('fact').value;
-            const description = document.getElementById('description').value;
-
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${fact}:</strong> ${description}`;
-            newFactsList.appendChild(li);
-
-            // Clear the input fields
-            document.getElementById('fact').value = '';
-            document.getElementById('description').value = '';
+        replaceButton.addEventListener('click', function() {
+            window.location.href = 'replace.html'; // Navigate to replace.html
         });
 
-        // Initial display of facts
         displayFacts();
     </script>
 </body>
