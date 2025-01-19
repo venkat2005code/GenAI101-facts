@@ -36,12 +36,25 @@
             padding: 10px;
             border-radius: 5px;
         }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>GenAI 101 Facts</h1>
         <ul id="facts-list"></ul>
+        <button id="replace-facts">Replace Facts</button>
     </div>
     <script>
         const facts = [
@@ -88,12 +101,21 @@
         ];
 
         const factsList = document.getElementById('facts-list');
+        const replaceButton = document.getElementById('replace-facts');
 
-        facts.forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${item.fact}:</strong> ${item.description}`;
-            factsList.appendChild(li);
-        });
+        function displayFacts() {
+            factsList.innerHTML = ''; // Clear existing facts
+            facts.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.fact}:</strong> ${item.description}`;
+                factsList.appendChild(li);
+            });
+        }
+
+        replaceButton.addEventListener('click', displayFacts);
+
+        // Initial display of facts
+        displayFacts();
     </script>
 </body>
 </html>
