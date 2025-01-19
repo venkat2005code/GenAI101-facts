@@ -54,6 +54,21 @@
         button:hover {
             background-color: #45a049; /* Darker green on hover */
         }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +76,14 @@
         <h1>GenAI 101 Facts</h1>
         <ul id="facts-list"></ul>
         <button id="replace-facts">Replace Facts</button>
+
+        <h2>Add New Fact</h2>
+        <form id="fact-form">
+            <input type="text" id="fact" placeholder="Enter new fact" required>
+            <textarea id="description" placeholder="Enter description" required></textarea>
+            <button type="submit">Add Fact</button>
+        </form>
+        <ul id="new-facts-list"></ul>
     </div>
     <script>
         const facts = [
@@ -108,6 +131,8 @@
 
         const factsList = document.getElementById('facts-list');
         const replaceButton = document.getElementById('replace-facts');
+        const newFactsList = document.getElementById('new-facts-list');
+        const factForm = document.getElementById('fact-form');
 
         function displayFacts() {
             factsList.innerHTML = ''; // Clear existing facts
@@ -119,6 +144,21 @@
         }
 
         replaceButton.addEventListener('click', displayFacts);
+
+        factForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const fact = document.getElementById('fact').value;
+            const description = document.getElementById('description').value;
+
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${fact}:</strong> ${description}`;
+            newFactsList.appendChild(li);
+
+            // Clear the input fields
+            document.getElementById('fact').value = '';
+            document.getElementById('description').value = '';
+        });
 
         // Initial display of facts
         displayFacts();
