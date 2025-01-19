@@ -3,125 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenAI 101 Facts</title>
+    <title>Fun Facts App</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
             text-align: center;
+            background: linear-gradient(135deg, #f3f4f6, #e9ecef);
             color: #333;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        header {
+            margin-top: 20px;
         }
 
-        li {
-            background-color: #e6e6fa; /* Lavender background for list items */
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
         }
 
+        /* Fact Container */
+        #fact-container {
+            margin: 40px 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            color: #555;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Button Styles */
         button {
-            display: block;
-            margin: 20px auto;
             padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4caf50; /* Green background for button */
-            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>GenAI 101 Facts</h1>
-        <ul id="facts-list"></ul>
-        <button id="replace-facts">Replace Facts</button>
-    </div>
+    <header>
+        <h1>Fun Facts About Me!</h1>
+    </header>
+    <main>
+        <section id="fact-container">
+            <p id="fact-display">Click the button below to discover a fun fact about me!</p>
+        </section>
+        <section>
+            <button id="generate-fact-btn">Generate Fun Fact</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Fun Facts App. All rights reserved.</p>
+    </footer>
     <script>
+        // Array of fun facts
         const facts = [
-            {
-                fact: "Course Purpose",
-                description: "GenAI 101 is designed to help participants understand prompt engineering, context setting, and how to handle AI limitations, particularly hallucinations."
-            },
-            {
-                fact: "Capstone Project",
-                description: "The course includes a capstone project, the Personal Fun Facts Generator App, which allows users to apply the concepts learned throughout the workshop."
-            },
-            {
-                fact: "Key Features",
-                description: "The Personal Fun Facts Generator App can generate random fun facts about users and allows for customization by adding unique facts."
-            },
-            {
-                fact: "Technology Stack",
-                description: "The app is built using HTML, CSS, and JavaScript, making it accessible for web development."
-            },
-            {
-                fact: "Learning Objectives",
-                description: "Participants will learn to recognize and address potential hallucinations in AI-generated content."
-            },
-            {
-                fact: "Interactive Learning",
-                description: "The course emphasizes interactive learning, allowing participants to experiment with prompt variations to see how they affect generated outputs."
-            },
-            {
-                fact: "Deployment",
-                description: "The app can be easily hosted on GitHub Pages, enabling users to share their creations online without additional setup."
-            },
-            {
-                fact: "Timeframe",
-                description: "The project is designed to be completed in approximately 15 minutes, incorporating key concepts from the workshop."
-            },
-            {
-                fact: "Hands-On Experience",
-                description: "Participants gain hands-on experience with AI tools, enhancing their understanding of how to effectively use AI in practical applications."
-            },
-            {
-                fact: "Collaboration",
-                description: "GenAI 101 is part of a collaborative effort involving various organizations, enhancing the learning experience through shared resources and knowledge."
-            }
+            "I love hiking.",
+            "I am an avid coder and love to code often.",
+            "I once cooked a taco.",
+            "I speak three languages fluently.",
+            "I’m learning to play the guitar in my free time.",
+            "My favorite color is blue.",
+            "I enjoy stargazing on clear nights.",
+            "I once ran a marathon for charity!"
         ];
 
-        const factsList = document.getElementById('facts-list');
-        const replaceButton = document.getElementById('replace-facts');
-
-        function displayFacts() {
-            factsList.innerHTML = ''; // Clear existing facts
-            facts.forEach(item => {
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${item.fact}:</strong> ${item.description}`;
-                factsList.appendChild(li);
-            });
+        // Function to generate a random fact
+        function generateFact() {
+            const factDisplay = document.getElementById('fact-display');
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            factDisplay.textContent = facts[randomIndex];
         }
 
-        replaceButton.addEventListener('click', displayFacts);
-
-        // Initial display of facts
-        displayFacts();
+        // Add event listener to the button
+        document.getElementById('generate-fact-btn').addEventListener('click', generateFact);
     </script>
 </body>
 </html>
